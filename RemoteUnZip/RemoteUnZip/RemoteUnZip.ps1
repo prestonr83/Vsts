@@ -64,15 +64,19 @@ try {
     else{
         $sessopt = New-PSSessionOption
     }
-    if($SSL -eq "https"){
-        $session = New-PSSession -ComputerName $RemoteComputer -Credential $credential -UseSSL -SessionOption $sessopt      
+    $hosts = $RemoteComputer.split(",")
+    foreach($host in $hosts){
+
+        if($SSL -eq "https"){
+            $session = New-PSSession -ComputerName $host -Credential $credential -UseSSL -SessionOption $sessopt      
+        }
+        else{
+            $session = New-PSSession -ComputerName $host -Credential $credential
+        }
+        
+        Invoke-Command -Session $session -ScriptBlock $scriptblock -ArgumentList $ZipFile ,$OutputPath , $cleanOutput ,$RemoveZip 
+        Remove-PSSession -Session $session
     }
-    else{
-        $session = New-PSSession -ComputerName $RemoteComputer -Credential $credential
-    }
-    
-    Invoke-Command -Session $session -ScriptBlock $scriptblock -ArgumentList $ZipFile ,$OutputPath , $cleanOutput ,$RemoveZip 
-    Remove-PSSession -Session $session
 
     
 
