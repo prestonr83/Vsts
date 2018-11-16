@@ -3,7 +3,7 @@
   "id": "remoteunzipprod",
   "version": "1.0",
   "name": "RemoteUnzipImproved",
-  "publisher": "SaeidBabaei",
+  "publisher": "PrestonRodriguez",
   "public": true,
   "description": "Easy and fast extract your zip files on remote machine !",
   "targets": [
