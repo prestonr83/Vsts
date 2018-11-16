@@ -24,6 +24,11 @@
     "Decompress",
     "Zip"
   ],
+  "content": {
+    "details": {
+      "path": "overview.md"
+    }
+  },
   "baseUri": "https://github.com/prestonr83/Vsts",
    "files": [
         {
