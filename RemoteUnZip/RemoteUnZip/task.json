@@ -74,6 +74,25 @@
       "defaultValue": "false",
       "required": false,
       "helpMarkDown": "Delete source zip file after extract"
+    },
+    {
+      "name":"SSL",
+      "type":"radio",
+      "label":"PSRemote Protocol",
+      "required":false,
+      "defaultValue":"https",
+      "options": {
+          "https":"HTTPs",
+          "http":"HTTP"
+      }
+    },
+    {
+      "name": "IgnoreCa",
+      "type": "boolean",
+      "label": "Ignore SelfSigned Cert",
+      "defaultValue": "true",
+      "required": false,
+      "helpMarkDown": "Ignore SelfSigned Cert when PSRemoting over HTTPs"
     }
   ],
   "execution": {

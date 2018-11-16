@@ -14,7 +14,8 @@ try {
     $OutputPath = Get-VstsInput -Name OutputPath -Require
     $cleanOutput = Get-VstsInput -Name CleanOutput 
     $RemoveZip = Get-VstsInput -Name RemoveZip 
-
+    $SSL = Get-VstsInput -Name SSL
+    $IGNORECA = Get-VstsInput -Name IgnoreCa
     $scriptBlock = { 
     
     	$zip = $args[0]
@@ -57,7 +58,19 @@ try {
     }
     
     $credential = New-Object System.Management.Automation.PSCredential($UserName , (ConvertTo-SecureString -String $Password -AsPlainText -Force));
-    $session = New-PSSession -ComputerName $RemoteComputer -Credential $credential;
+    if($IGNORECA){
+        $sessopt = New-PSSessionOption -SkipCACheck
+    }
+    else{
+        $sessopt = New-PSSessionOption
+    }
+    if($SSL -eq "https"){
+        $session = New-PSSession -ComputerName $RemoteComputer -Credential $credential -UseSSL -SessionOption $sessopt      
+    }
+    else{
+        $session = New-PSSession -ComputerName $RemoteComputer -Credential $credential
+    }
+    
     Invoke-Command -Session $session -ScriptBlock $scriptblock -ArgumentList $ZipFile ,$OutputPath , $cleanOutput ,$RemoveZip 
     Remove-PSSession -Session $session
 
