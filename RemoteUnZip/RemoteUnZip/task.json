@@ -1,9 +1,9 @@
 {
-  "id": "f249e4c0-fce8-11e6-98ef-7f35e49b2dc4",
-  "name": "RemoteUnZip",
+  "id": "68452fcf-73c6-4402-bb71-aab23b24d432",
+  "name": "RemoteUnZipImproved",
   "friendlyName": "Remote UnZip",
   "description": "Unzip files on remote server",
-  "author": "Saeid Babaei",
+  "author": "Preston Rodriguez",
   "helpMarkDown": "Unzip files on remote server",
   "category": "Utility",
   "visibility": [
